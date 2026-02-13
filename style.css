@@ -381,3 +381,25 @@ img{ max-width: 100%; display: block; }
 .modal-desc{
   padding-bottom: 10px;
 }
+
+/* ===== Modal: mobile fix (top aligned + safe area) ===== */
+@media (max-width: 768px) {
+  .modal-backdrop{
+    align-items: flex-start;
+    padding-top: calc(env(safe-area-inset-top) + 16px);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 16px);
+  }
+
+  .modal{
+    margin-top: 56px; /* 若你header更高可调成 64/72 */
+    max-height: calc(100vh - 56px - env(safe-area-inset-top) - 32px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-head{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+}
