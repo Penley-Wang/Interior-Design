@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>作品詳情｜隅所室內設計事務所</title>
+    <meta name="description" content="作品詳情頁：完整項目說明與更多圖片。" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="./index.html#works" aria-label="返回作品列表">
+          <span class="brand-mark">◎</span>
+          <span class="brand-text">隅所室內設計事務所</span>
+        </a>
+
+        <nav class="nav" aria-label="主導航">
+          <a href="./index.html#about">關於</a>
+          <a href="./index.html#works">作品</a>
+          <a href="./index.html#contact">聯繫</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <div class="detail-topbar">
+          <button class="btn" type="button" id="backBtn">← 返回</button>
+          <div class="sub" id="detailHint">若你是從列表點進來，按返回會回到上一頁。</div>
+        </div>
+
+        <h1 class="h1" id="projectTitle">作品標題</h1>
+        <p class="lead" id="projectDesc"></p>
+
+        <!-- 直接沿用你原本 modal-body 的排版元件（但不再是彈窗） -->
+        <div class="detail-panel">
+          <div class="modal-body detail-body">
+            <div class="modal-cover">
+              <img id="projectCover" src="" alt="作品封面" />
+            </div>
+
+            <div class="modal-info">
+              <div class="kv"><div class="k">類型</div><div class="v" id="projectType"></div></div>
+              <div class="kv"><div class="k">面積</div><div class="v" id="projectArea"></div></div>
+              <div class="kv"><div class="k">地點</div><div class="v" id="projectLocation"></div></div>
+              <div class="kv"><div class="k">年份</div><div class="v" id="projectYear"></div></div>
+              <div class="tag-row" id="projectTags"></div>
+            </div>
+
+            <div class="modal-gallery">
+              <h2 class="h4">更多圖片</h2>
+              <div id="projectGallery" class="gallery-grid"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <small>© <span id="year"></span> 隅所室內設計事務所</small>
+        <small class="muted">Project page</small>
+      </div>
+    </footer>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>

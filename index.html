@@ -4,19 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>隅所室內設計事務所</title>
-    <meta name="description" content="個人室内設計工作室，提供空間規劃、住宅與商業空間設計、施工監理與軟裝搭配服务。" />
+    <meta
+      name="description"
+      content="隅所室內設計事務所｜住宅與小型商空設計、舊屋改造、空間規劃與軟裝搭配，提供從概念到落地的完整服務。"
+    />
     <link rel="stylesheet" href="./style.css" />
   </head>
 
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="返回顶部">
+        <a class="brand" href="#top" aria-label="返回頂部">
           <span class="brand-mark">◎</span>
           <span class="brand-text">隅所室內設計事務所</span>
         </a>
 
-        <nav class="nav" aria-label="主导航">
+        <nav class="nav" aria-label="主導航">
           <a href="#about">關於</a>
           <a href="#works">作品</a>
           <a href="#contact">聯繫</a>
@@ -25,11 +28,11 @@
     </header>
 
     <main id="top">
-      <!-- Section 1: 设计师介绍（左图右文） -->
+      <!-- Section 1: 設計師介紹（左圖右文） -->
       <section id="about" class="section">
         <div class="container about-grid">
           <figure class="about-photo">
-            <!-- 替换为你的设计师照片：assets/designer.jpg -->
+            <!-- 放在 /images/designer.jpg -->
             <img src="./images/designer.jpg" alt="設計師照片" />
           </figure>
 
@@ -40,10 +43,10 @@
             </p>
 
             <ul class="bullet">
-              <li><strong>服務範圍：</strong>住宅／小型商業空间／舊屋改造／軟裝搭配</li>
+              <li><strong>服務範圍：</strong>住宅／小型商業空間／舊屋改造／軟裝搭配</li>
               <li><strong>工作方法：</strong>需求訪談 → 平面規劃 → 3D示意 → 材料清單 → 現場協調</li>
               <li><strong>設計取向：</strong>克制的層次、可維護的細節、長期主義的舒適度</li>
-              <li><strong>交付内容：</strong>平面圖、立面圖、材料與燈具建議、預算與工期建議</li>
+              <li><strong>交付內容：</strong>平面圖、立面圖、材料與燈具建議、預算與工期建議</li>
             </ul>
 
             <div class="cta-row">
@@ -61,18 +64,16 @@
         </div>
       </section>
 
-      <!-- Section 2: 设计作品（卡片 + 点击弹窗详情） -->
+      <!-- Section 2: 設計作品（點擊跳轉到 project.html） -->
       <section id="works" class="section section-muted">
         <div class="container">
           <div class="section-head">
             <h2 class="h2">設計作品</h2>
-            <p class="sub">
-              點擊任一作品卡片，可查看更完整的項目說明與更多圖片。
-            </p>
+            <p class="sub">點擊任一作品卡片，將開啟該作品的完整頁面；按瀏覽器返回可回到列表。</p>
           </div>
 
           <div id="worksGrid" class="works-grid" aria-live="polite">
-            <!-- JS 会自动渲染作品卡片到这里 -->
+            <!-- JS 會渲染作品卡片到這裡 -->
           </div>
         </div>
       </section>
@@ -81,9 +82,7 @@
       <section id="contact" class="section">
         <div class="container contact">
           <h2 class="h2">聯繫與合作</h2>
-          <p class="sub">
-            可填写你的联络方式：Email / IG / Line / 表单链接。若你没有后端，这里先做静态展示即可。
-          </p>
+          <p class="sub">此區可先做靜態展示（無後端也可用）。</p>
 
           <div class="contact-card">
             <div class="contact-item">
@@ -105,60 +104,10 @@
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <small>© <span id="year"></span> 你的工作室名｜Interior Design Studio</small>
+        <small>© <span id="year"></span> 隅所室內設計事務所</small>
         <small class="muted">Built with HTML / CSS / JS</small>
       </div>
     </footer>
-
-    <!-- 作品详情弹窗（Modal） -->
-    <div id="modalBackdrop" class="modal-backdrop" hidden>
-      <div
-        class="modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modalTitle"
-        aria-describedby="modalDesc"
-      >
-        <div class="modal-head">
-          <h3 id="modalTitle" class="modal-title">作品标题</h3>
-          <button id="modalCloseBtn" class="icon-btn" type="button" aria-label="关闭弹窗">✕</button>
-        </div>
-
-        <p id="modalDesc" class="modal-desc"></p>
-
-        <div class="modal-body">
-          <div class="modal-cover">
-            <img id="modalCover" src="" alt="作品封面" />
-          </div>
-
-          <div class="modal-info">
-            <div class="kv">
-              <div class="k">类型</div>
-              <div class="v" id="modalType"></div>
-            </div>
-            <div class="kv">
-              <div class="k">面积</div>
-              <div class="v" id="modalArea"></div>
-            </div>
-            <div class="kv">
-              <div class="k">地点</div>
-              <div class="v" id="modalLocation"></div>
-            </div>
-            <div class="kv">
-              <div class="k">年份</div>
-              <div class="v" id="modalYear"></div>
-            </div>
-
-            <div class="tag-row" id="modalTags"></div>
-          </div>
-
-          <div class="modal-gallery">
-            <h4 class="h4">更多圖片</h4>
-            <div id="modalGallery" class="gallery-grid"></div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <script src="./app.js" defer></script>
   </body>
