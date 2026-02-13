@@ -149,6 +149,8 @@ function openProject(projectId) {
     .join("");
 
   modalBackdrop.hidden = false;
+  const modalEl = modalBackdrop.querySelector(".modal");
+  modalEl.scrollTop = 0;
 
   document.body.style.overflow = "hidden";
   modalCloseBtn.focus();
