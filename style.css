@@ -354,7 +354,6 @@ img{ max-width: 100%; display: block; }
   display: none !important;
 }
 
-/* 新增 : 防止頁面縮小問題 */
 /* === Modal usability on small viewport === */
 .modal-backdrop{
   /* 保持居中，但允许内容区域自身滚动 */
@@ -380,4 +379,26 @@ img{ max-width: 100%; display: block; }
 /* 可选：让描述也别把首屏挤满 */
 .modal-desc{
   padding-bottom: 10px;
+}
+
+/* ===== Modal: mobile fix (top aligned + safe area) ===== */
+@media (max-width: 768px) {
+  .modal-backdrop{
+    align-items: flex-start;
+    padding-top: calc(env(safe-area-inset-top) + 16px);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 16px);
+  }
+
+  .modal{
+    margin-top: 56px; /* 若你header更高可调成 64/72 */
+    max-height: calc(100vh - 56px - env(safe-area-inset-top) - 32px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-head{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
 }
