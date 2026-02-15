@@ -64,21 +64,62 @@ const PROJECTS = [
   },
   {
     id: "p3",
-    title: "秩序與柔和｜兩房一廳",
+    title: "板橋松柏街",
     type: "住宅",
     area: "24坪",
-    location: "桃園",
+    location: "新北市",
     year: "2023",
-    cover: "./images/projects/p3-cover.jpg",
+    cover: "./images/板橋松柏街/完工照/20.jpg",
     summary:
       "以尺度化收納與隱藏式機能牆控制視覺噪音；軟裝採用低飽和材質，形成柔和過渡。",
     tags: ["收納整合", "低飽和", "機能牆", "尺度控制"],
     gallery: [
-      "./images/projects/p3-1.jpg",
-      "./images/projects/p3-2.jpg",
-      "./images/projects/p3-3.jpg",
-      "./images/projects/p3-4.jpg",
-      "./images/projects/p3-5.jpg",
+      "./images/板橋松柏街/完工照/02.jpg",
+      "./images/板橋松柏街/完工照/04.jpg",
+      "./images/板橋松柏街/完工照/05.jpg",
+      "./images/板橋松柏街/完工照/06.jpg",
+      "./images/板橋松柏街/完工照/07.jpg",
+      "./images/板橋松柏街/完工照/08.jpg",
+      "./images/板橋松柏街/完工照/09.jpg",
+      "./images/板橋松柏街/完工照/10.jpg",
+      "./images/板橋松柏街/完工照/11.jpg",
+      "./images/板橋松柏街/完工照/12.jpg",
+      "./images/板橋松柏街/完工照/13.jpg",
+      "./images/板橋松柏街/完工照/14.jpg",
+      "./images/板橋松柏街/完工照/15.jpg",
+      "./images/板橋松柏街/完工照/16.jpg",
+      "./images/板橋松柏街/完工照/17.jpg",
+      "./images/板橋松柏街/完工照/18.jpg",
+      "./images/板橋松柏街/完工照/19.jpg",
+      "./images/板橋松柏街/完工照/20.jpg",
+      "./images/板橋松柏街/完工照/21.jpg",
+      "./images/板橋松柏街/完工照/22.jpg",
+      "./images/板橋松柏街/完工照/23.jpg",
+      "./images/板橋松柏街/完工照/24.jpg",
+      "./images/板橋松柏街/完工照/25.jpg",
+      "./images/板橋松柏街/完工照/27.jpg",
+      "./images/板橋松柏街/完工照/28.jpg",
+      "./images/板橋松柏街/完工照/29.jpg",
+      "./images/板橋松柏街/完工照/30.jpg",
+      "./images/板橋松柏街/完工照/31.jpg",
+      "./images/板橋松柏街/完工照/32.jpg",
+      "./images/板橋松柏街/完工照/33.jpg",
+      "./images/板橋松柏街/完工照/34.jpg",
+    ],
+  },
+  {
+    id: "p4",
+    title: "越式河粉餐廳裝修案",
+    type: "住宅",
+    area: "24坪",
+    location: "新北市",
+    year: "2023",
+    cover: "./images/越式河粉餐廳裝修案/完工照/R0000093.jpg",
+    summary:
+      "以尺度化收納與隱藏式機能牆控制視覺噪音；軟裝採用低飽和材質，形成柔和過渡。",
+    tags: ["收納整合", "低飽和", "機能牆", "尺度控制"],
+    gallery: [
+      "./images/越式河粉餐廳裝修案/完工照/R0000093.jpg",
     ],
   },
 ];
@@ -170,15 +211,95 @@ function renderProjectDetail() {
   tagsEl.innerHTML = project.tags.map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("");
 
   const galleryEl = document.getElementById("projectGallery");
+  // galleryEl.innerHTML = project.gallery
+  //   .map((src, idx) => {
+  //     return `
+  //       <div class="gallery-item">
+  //         <img src="${escapeHtml(src)}" alt="${escapeHtml(project.title)} 圖片 ${idx + 1}" loading="lazy" decoding="async">
+  //       </div>
+  //     `;
+  //   })
+  //   .join("");
+
   galleryEl.innerHTML = project.gallery
-    .map((src, idx) => {
-      return `
-        <div class="gallery-item">
-          <img src="${escapeHtml(src)}" alt="${escapeHtml(project.title)} 圖片 ${idx + 1}" loading="lazy" decoding="async">
-        </div>
-      `;
-    })
-    .join("");
+  .map((src, idx) => {
+    const alt = `${project.title} 圖片 ${idx + 1}`;
+    return `
+      <button class="gallery-item" type="button" data-idx="${idx}" aria-label="開啟：${escapeHtml(alt)}">
+        <img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">
+      </button>
+    `;
+  })
+  .join("");
+
+  // === Lightbox 行為 ===
+  const lb = document.getElementById("lightbox");
+  const lbImg = document.getElementById("lightboxImg");
+  const lbCaption = document.getElementById("lightboxCaption");
+  const lbClose = document.getElementById("lightboxClose");
+  const lbPrev = document.getElementById("lightboxPrev");
+  const lbNext = document.getElementById("lightboxNext");
+
+  if (!lb || !lbImg || !lbCaption || !lbClose || !lbPrev || !lbNext) return;
+
+  let currentIdx = 0;
+
+  function openLightbox(idx) {
+    currentIdx = idx;
+    const src = project.gallery[currentIdx];
+    const caption = `${project.title}｜第 ${currentIdx + 1} 張 / 共 ${project.gallery.length} 張`;
+
+    lbImg.src = src;
+    lbImg.alt = `${project.title} 圖片 ${currentIdx + 1}`;
+    lbCaption.textContent = caption;
+
+    lb.classList.add("is-open");
+    lb.setAttribute("aria-hidden", "false");
+    document.body.classList.add("no-scroll");
+  }
+
+  function closeLightbox() {
+    lb.classList.remove("is-open");
+    lb.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("no-scroll");
+    // 清空避免某些手機記憶體占用
+    lbImg.src = "";
+  }
+
+  function prevImg() {
+    openLightbox((currentIdx - 1 + project.gallery.length) % project.gallery.length);
+  }
+
+  function nextImg() {
+    openLightbox((currentIdx + 1) % project.gallery.length);
+  }
+
+  // 點縮圖開啟
+  galleryEl.querySelectorAll(".gallery-item").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const idx = Number(btn.dataset.idx || 0);
+      openLightbox(idx);
+    });
+  });
+
+  // 關閉：按 X / 點背景
+  lbClose.addEventListener("click", closeLightbox);
+  lb.addEventListener("click", (e) => {
+    if (e.target && e.target.dataset && e.target.dataset.close) closeLightbox();
+  });
+
+  // 上下張
+  lbPrev.addEventListener("click", prevImg);
+  lbNext.addEventListener("click", nextImg);
+
+  // ESC 關閉
+  window.addEventListener("keydown", (e) => {
+    if (!lb.classList.contains("is-open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") prevImg();
+    if (e.key === "ArrowRight") nextImg();
+  });
+
 }
 
 // ====== init ======

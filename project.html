@@ -65,6 +65,26 @@
       </div>
     </footer>
 
+    <!-- Lightbox：點縮圖後顯示原圖（不裁切） -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <div class="lightbox-backdrop" data-close="1"></div>
+
+      <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="圖片檢視">
+        <button class="lightbox-close" type="button" id="lightboxClose" aria-label="關閉">✕</button>
+
+        <figure class="lightbox-figure">
+          <img id="lightboxImg" src="" alt="" />
+        </figure>
+
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+
+        <div class="lightbox-nav">
+          <button class="btn" type="button" id="lightboxPrev">← 上一張</button>
+          <button class="btn" type="button" id="lightboxNext">下一張 →</button>
+        </div>
+      </div>
+    </div>
+
     <script src="./app.js" defer></script>
   </body>
 </html>

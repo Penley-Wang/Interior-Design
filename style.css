@@ -344,3 +344,94 @@ img{ max-width: 100%; display: block; }
     background: rgba(15,15,16,0.92);
   }
 }
+
+/* ===== Lightbox（點縮圖後完整顯示） ===== */
+.no-scroll{ overflow: hidden; }
+
+.lightbox{
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+}
+.lightbox.is-open{ display: block; }
+
+.lightbox-backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+}
+
+.lightbox-panel{
+  position: absolute;
+  inset: 16px;
+  margin: auto;
+  max-width: 1100px;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 2px);
+  background: rgba(22,22,24,0.98);
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  gap: 10px;
+  padding: 12px;
+}
+
+.lightbox-close{
+  justify-self: end;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.lightbox-figure{
+  margin: 0;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: #111;
+  overflow: hidden;
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+}
+
+.lightbox-figure img{
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 240px);
+  object-fit: contain;   /* ✅ 不裁切 */
+  background: #111;
+}
+
+.lightbox-caption{
+  color: var(--muted);
+  font-size: 12px;
+  padding: 0 4px;
+}
+
+.lightbox-nav{
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+/* 讓 gallery-item 從 div 改成 button 後，外觀與原本一致 */
+.gallery-item{
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: #111;
+}
+.gallery-item:focus{
+  outline: 2px solid rgba(216,199,163,0.35);
+  outline-offset: 2px;
+}
+
